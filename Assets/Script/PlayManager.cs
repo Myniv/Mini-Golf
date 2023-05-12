@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayManager : MonoBehaviour
     [SerializeField] TMP_Text shootCountText;
 
     [SerializeField] int level;
+
+    [SerializeField] UnityEvent onFinished;
 
 
     bool isBallOutside;
@@ -52,6 +55,7 @@ public class PlayManager : MonoBehaviour
 
         isGoal = true;
         ballController.enabled=false;
+        onFinished.Invoke();
 
         finishWindow.gameObject.SetActive(true);
         finishText.text = "Finished\n" + "Shoot Count : " + ballController.ShootCount;
